@@ -1,11 +1,11 @@
 public class StackUtils {
 
-    public static double findAndRemoveLargest(StackClass myStack) {
+    public static double findAndRemoveLargest(StackUtils myStack) {
         if (myStack.isEmpty()) {
             return -373.0; 
         }
 
-        StackClass tempStack = new StackClass();
+        StackUtils tempStack = new StackUtils();
         double largestValue = myStack.pop();
         tempStack.push(largestValue);
 
