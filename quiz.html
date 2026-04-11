@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSC 236 — Exam 2: Stacks & Queues Quiz</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f5f5f5; color: #1a1a1a; padding: 2rem 1rem; }
+  .container { max-width: 820px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 1.5rem; }
+  .progress-label { font-size: 13px; color: #666; margin-bottom: 6px; }
+  .progress-bar-bg { background: #e0e0e0; border-radius: 99px; height: 6px; margin-bottom: 1.5rem; }
+  .progress-bar-fill { background: #534AB7; border-radius: 99px; height: 6px; transition: width 0.4s ease; }
+  .q-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .q-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1rem; }
+  .q-num { background: #EEEDFE; color: #3C3489; font-size: 12px; font-weight: 500; border-radius: 6px; padding: 4px 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .q-topic { font-size: 12px; color: #888; margin-bottom: 4px; }
+  .q-text { font-size: 15px; color: #1a1a1a; line-height: 1.6; font-weight: 500; }
+  .q-sub { font-size: 14px; color: #555; margin-top: 6px; line-height: 1.6; }
+  .code-block { background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px 14px; margin: 10px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #1a1a1a; line-height: 1.9; }
+  .code-block b { color: #3C3489; }
+  textarea { width: 100%; min-height: 72px; font-size: 14px; line-height: 1.6; padding: 10px 12px; resize: vertical; font-family: Arial, sans-serif; margin-top: 10px; border: 1px solid #ccc; border-radius: 6px; }
+  textarea:focus { outline: 2px solid #AFA9EC; border-color: #AFA9EC; }
+  .reveal-btn { font-size: 13px; color: #534AB7; background: none; border: 1px solid #AFA9EC; border-radius: 6px; padding: 5px 14px; cursor: pointer; margin-top: 10px; }
+  .reveal-btn:hover { background: #EEEDFE; }
+  .answer-box { background: #EEEDFE; border: 1px solid #AFA9EC; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 13px; color: #3C3489; line-height: 1.7; display: none; }
+  .answer-box pre { font-family: 'Courier New', monospace; font-size: 12px; background: #CECBF6; padding: 8px 10px; border-radius: 6px; margin-top: 6px; overflow-x: auto; white-space: pre-wrap; color: #26215C; }
+  .step-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  .step-table th { background: #CECBF6; color: #26215C; padding: 6px 10px; text-align: left; font-weight: 500; }
+  .step-table td { padding: 5px 10px; border-top: 1px solid #AFA9EC; color: #3C3489; font-family: 'Courier New', monospace; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: #aaa; text-transform: uppercase; margin: 1.5rem 0 0.75rem; }
+  .check-all-btn { background: #534AB7; color: white; border: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; font-weight: 500; cursor: pointer; margin-top: 0.5rem; }
+  .check-all-btn:hover { background: #3C3489; }
+  code { font-family: 'Courier New', monospace; font-size: 13px; background: #f0f0f0; padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>CSC 236 — Exam 2: Stacks &amp; Queues</h1>
+  <p class="subtitle">11 short-answer practice questions · Stacks · Queues · Expression Conversion · Java</p>
+
+  <p class="progress-label" id="prog-label">Question 0 / 11 answered</p>
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-fill" style="width:0%"></div></div>
+
+  <!-- PART 1 -->
+  <div class="section-label">Part 1 — Stacks &amp; Queues: Tracing</div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q1</span>
+      <div>
+        <div class="q-topic">Stack output / tracing</div>
+        <div class="q-text">After the following statements execute, what are the contents of the stack? Draw each intermediate state.</div>
+      </div>
+    </div>
+    <div class="code-block">
+      <b>Deque&lt;Integer&gt; myStack = new ArrayDeque&lt;&gt;( );</b><br>
+      <b>myStack.push(5);</b><br>
+      <b>myStack.push(3);</b><br>
+      <b>myStack.push(7);</b><br>
+      <b>int val = myStack.pop( );</b><br>
+      <b>myStack.push(val + 1);</b><br>
+      <b>myStack.push(myStack.peek( ));</b><br>
+      <b>myStack.pop( );</b><br>
+      <b>myStack.push(myStack.peek( ) * 2);</b>
+    </div>
+    <div class="q-sub">What is the final contents of the stack (top → bottom)? What does the last peek() return?</div>
+    <textarea class="ans-field" placeholder="Draw each step and write the final stack state top → bottom..."></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      <table class="step-table">
+        <tr><th>Statement</th><th>Stack (top → bottom)</th><th>Notes</th></tr>
+        <tr><td>push(5)</td><td>[5]</td><td></td></tr>
+        <tr><td>push(3)</td><td>[3, 5]</td><td></td></tr>
+        <tr><td>push(7)</td><td>[7, 3, 5]</td><td></td></tr>
+        <tr><td>val = pop()</td><td>[3, 5]</td><td>val = 7</td></tr>
+        <tr><td>push(val+1) → push(8)</td><td>[8, 3, 5]</td><td></td></tr>
+        <tr><td>push(peek()) → push(8)</td><td>[8, 8, 3, 5]</td><td>peek() = 8</td></tr>
+        <tr><td>pop()</td><td>[8, 3, 5]</td><td>removes top 8</td></tr>
+        <tr><td>push(peek()*2) → push(16)</td><td>[16, 8, 3, 5]</td><td>peek()=8, 8*2=16</td></tr>
+      </table>
+      <br><b>Final stack top→bottom: 16, 8, 3, 5</b>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q2</span>
+      <div>
+        <div class="q-topic">Queue output / tracing</div>
+        <div class="q-text">After the following statements execute, what are the contents of the queue? Draw each intermediate state.</div>
+      </div>
+    </div>
+    <div class="code-block">
+      <b>Queue&lt;String&gt; myQueue = new LinkedList&lt;&gt;( );</b><br>
+      <b>myQueue.offer("Ann");</b><br>
+      <b>myQueue.offer("Bob");</b><br>
+      <b>myQueue.offer("Cal");</b><br>
+      <b>myQueue.offer("Dan");</b><br>
+      <b>String name = myQueue.poll( );</b><br>
+      <b>myQueue.offer(name);</b><br>
+      <b>myQueue.offer(myQueue.peek( ));</b><br>
+      <b>myQueue.poll( );</b><br>
+      <b>myQueue.offer(myQueue.peek( ));</b>
+    </div>
+    <div class="q-sub">What is the final contents of the queue (front → rear)? What does the last peek() return?</div>
+    <textarea class="ans-field" placeholder="Draw each step and write the final queue state front → rear..."></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      <table class="step-table">
+        <tr><th>Statement</th><th>Queue (front → rear)</th><th>Notes</th></tr>
+        <tr><td>offer("Ann")</td><td>[Ann]</td><td></td></tr>
+        <tr><td>offer("Bob")</td><td>[Ann, Bob]</td><td></td></tr>
+        <tr><td>offer("Cal")</td><td>[Ann, Bob, Cal]</td><td></td></tr>
+        <tr><td>offer("Dan")</td><td>[Ann, Bob, Cal, Dan]</td><td></td></tr>
+        <tr><td>name = poll()</td><td>[Bob, Cal, Dan]</td><td>name = "Ann"</td></tr>
+        <tr><td>offer(name) → offer("Ann")</td><td>[Bob, Cal, Dan, Ann]</td><td></td></tr>
+        <tr><td>offer(peek()) → offer("Bob")</td><td>[Bob, Cal, Dan, Ann, Bob]</td><td>peek() = "Bob"</td></tr>
+        <tr><td>poll()</td><td>[Cal, Dan, Ann, Bob]</td><td>removes front "Bob"</td></tr>
+        <tr><td>offer(peek()) → offer("Cal")</td><td>[Cal, Dan, Ann, Bob, Cal]</td><td>peek() = "Cal"</td></tr>
+      </table>
+      <br><b>Final queue front→rear: Cal, Dan, Ann, Bob, Cal</b>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q3</span>
+      <div>
+        <div class="q-topic">Circular queue front/rear indices</div>
+        <div class="q-text">A circular array queue has capacity 5 (indices 0–4). Starting with front=0, rear=0, size=0, trace front and rear after each operation using modular arithmetic.</div>
+      </div>
+    </div>
+    <div class="code-block">
+      <b>enqueue(A)</b><br>
+      <b>enqueue(B)</b><br>
+      <b>enqueue(C)</b><br>
+      <b>dequeue( )</b><br>
+      <b>enqueue(D)</b><br>
+      <b>dequeue( )</b>
+    </div>
+    <div class="q-sub">Track front index, rear index, and size after each step.<br>Formula: rear = (rear+1) % capacity on enqueue; front = (front+1) % capacity on dequeue.</div>
+    <textarea class="ans-field" placeholder="List front, rear, size after each operation..."></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      <table class="step-table">
+        <tr><th>Operation</th><th>front</th><th>rear</th><th>size</th><th>Contents</th></tr>
+        <tr><td>enqueue(A)</td><td>0</td><td>1</td><td>1</td><td>[A, _, _, _, _]</td></tr>
+        <tr><td>enqueue(B)</td><td>0</td><td>2</td><td>2</td><td>[A, B, _, _, _]</td></tr>
+        <tr><td>enqueue(C)</td><td>0</td><td>3</td><td>3</td><td>[A, B, C, _, _]</td></tr>
+        <tr><td>dequeue() → A</td><td>1</td><td>3</td><td>2</td><td>[_, B, C, _, _]</td></tr>
+        <tr><td>enqueue(D)</td><td>1</td><td>4</td><td>3</td><td>[_, B, C, D, _]</td></tr>
+        <tr><td>dequeue() → B</td><td>2</td><td>4</td><td>2</td><td>[_, _, C, D, _]</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="section-label">Part 2 — Choosing the Right Data Structure</div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q4</span>
+      <div>
+        <div class="q-topic">Data structure identification</div>
+        <div class="q-text">For each scenario, identify the best data structure (Stack, Queue, Linked List, Priority Queue) and justify in one sentence.</div>
+        <div class="q-sub">
+          a) A hospital ER — critical patients treated first regardless of arrival time.<br>
+          b) A web browser's Back button history.<br>
+          c) A printer spooler — jobs processed in the order received.<br>
+          d) A playlist where songs can be inserted or removed from any position.
+        </div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="a) ... b) ... c) ... d) ..." style="min-height:100px"></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      a) <b>Priority Queue</b> — dequeues by severity, not arrival order.<br>
+      b) <b>Stack</b> — LIFO: most recently visited page is returned first when pressing Back.<br>
+      c) <b>Queue</b> — FIFO: jobs are printed in submission order.<br>
+      d) <b>Linked List</b> — supports O(1) insertion/removal at arbitrary positions without shifting.
+    </div>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="section-label">Part 3 — Expression Evaluation &amp; Conversion</div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q5</span>
+      <div>
+        <div class="q-topic">Postfix evaluation using a stack</div>
+        <div class="q-text">Evaluate the following postfix expression using only a stack. Show each push/pop step and state the final result.</div>
+        <div class="q-sub" style="font-family:'Courier New',monospace; margin-top:8px;">6 &nbsp; 2 &nbsp; 3 &nbsp; + &nbsp; - &nbsp; 3 &nbsp; 8 &nbsp; 2 &nbsp; / &nbsp; + &nbsp; *</div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="Trace each token, show the stack state after each, and give the final result..."></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      <table class="step-table">
+        <tr><th>Token</th><th>Action</th><th>Stack</th></tr>
+        <tr><td>6</td><td>push</td><td>[6]</td></tr>
+        <tr><td>2</td><td>push</td><td>[6, 2]</td></tr>
+        <tr><td>3</td><td>push</td><td>[6, 2, 3]</td></tr>
+        <tr><td>+</td><td>pop 3,2 → 2+3=5, push 5</td><td>[6, 5]</td></tr>
+        <tr><td>-</td><td>pop 5,6 → 6-5=1, push 1</td><td>[1]</td></tr>
+        <tr><td>3</td><td>push</td><td>[1, 3]</td></tr>
+        <tr><td>8</td><td>push</td><td>[1, 3, 8]</td></tr>
+        <tr><td>2</td><td>push</td><td>[1, 3, 8, 2]</td></tr>
+        <tr><td>/</td><td>pop 2,8 → 8/2=4, push 4</td><td>[1, 3, 4]</td></tr>
+        <tr><td>+</td><td>pop 4,3 → 3+4=7, push 7</td><td>[1, 7]</td></tr>
+        <tr><td>*</td><td>pop 7,1 → 1*7=7, push 7</td><td>[7]</td></tr>
+      </table>
+      <br><b>Final result: 7</b>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q6</span>
+      <div>
+        <div class="q-topic">Infix to postfix — arrows method</div>
+        <div class="q-text">Convert the infix expression below to postfix using the arrows (fully parenthesized) method. Show your fully parenthesized form first.</div>
+        <div class="q-sub" style="font-family:'Courier New',monospace; margin-top:8px;">A + B * C - D / E</div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="Step 1: Fully parenthesize. Step 2: Move operators. Write postfix result."></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      Fully parenthesized: <b>((A + (B * C)) - (D / E))</b><br>
+      Move each operator to right of its closing parenthesis:
+      <pre>Postfix: A B C * + D E / -</pre>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q7</span>
+      <div>
+        <div class="q-topic">Balanced symbols using a stack</div>
+        <div class="q-text">Describe the balanced symbols algorithm, then determine whether the expression below is balanced. Show your stack trace.</div>
+        <div class="q-sub" style="font-family:'Courier New',monospace; margin-top:8px;">{ &nbsp; [ &nbsp; ( &nbsp; A + B &nbsp; ) &nbsp; * &nbsp; ( &nbsp; C - D &nbsp; ] &nbsp; }</div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="Algorithm description + stack trace + balanced or not?"></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      <b>Algorithm:</b> Scan left→right. Push each opener ({ [ (). On a closer, pop and check for match — mismatch or empty stack = unbalanced. Non-empty stack at end = unbalanced.<br><br>
+      <b>Trace:</b> Push {, push [, push ( → ) matches ( ✓ pop | push ( → next closer is ] but top of stack is ( — MISMATCH.<br>
+      <b>Result: NOT balanced</b> — ] attempts to close ( instead of [.
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q8</span>
+      <div>
+        <div class="q-topic">Notation conversions using stacks</div>
+        <div class="q-text">Perform both conversions below. Show your stack trace for each.</div>
+        <div class="q-sub">
+          a) Prefix → Infix: &nbsp;<code>+ * A B - C D</code><br>
+          b) Postfix → Prefix: &nbsp;<code>A B + C D - *</code>
+        </div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="a) Prefix → Infix: ...   b) Postfix → Prefix: ..."></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      a) <b>Prefix → Infix</b> (scan right-to-left; push operands; on operator pop two, form (left op right), push):
+      <pre>Scan: D,C,B,A pushed
+- : pop C,D → (C-D), push
+* : pop A,B → (A*B), push
++ : pop (A*B),(C-D) → ((A*B)+(C-D))
+Infix: ((A * B) + (C - D))</pre>
+      b) <b>Postfix → Prefix</b> (scan left-to-right; push operands; on operator pop two (right then left), form "op left right", push):
+      <pre>A,B pushed → + pops B,A → +AB
+C,D pushed → - pops D,C → -CD
+* pops -CD,+AB → *+AB-CD
+Prefix: * + A B - C D</pre>
+    </div>
+  </div>
+
+  <!-- PART 4 -->
+  <div class="section-label">Part 4 — Java Short Answer</div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q9</span>
+      <div>
+        <div class="q-topic">Stack implementation &amp; string parsing</div>
+        <div class="q-text">Answer all four parts.</div>
+        <div class="q-sub">
+          a) Write the statement to create an array of 10 integers as a stack's backing store.<br>
+          b) What does Java's Stack class use internally? What is the preferred alternative class?<br>
+          c) Split string <code>s</code> by ".", "$", or " " into at most 5 parts.<br>
+          d) Create a StringTokenizer for string <code>s</code> using "," as the delimiter.
+        </div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="a) ... b) ... c) ... d) ..." style="min-height:110px"></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      a) <pre>int[] stackArray = new int[10];</pre>
+      b) Stack extends <b>Vector</b> (array-based, synchronized). Preferred alternative: <b>ArrayDeque</b>.
+      <pre>Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();</pre>
+      c) <pre>String[] parts = s.split("[.$ ]", 5);</pre>
+      d) <pre>StringTokenizer st = new StringTokenizer(s, ",");</pre>
+    </div>
+  </div>
+
+  <!-- PART 5 -->
+  <div class="section-label">Part 5 — Enumeration &amp; Coding</div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q10</span>
+      <div>
+        <div class="q-topic">Enumerations in Java</div>
+        <div class="q-text">Write a Java class that: defines an enum called <code>Season</code> with SPRING, SUMMER, FALL, WINTER; stores all values in an array; iterates printing each value's name and ordinal index.</div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="Write the full Java class..." style="min-height:120px"></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      <pre>public class SeasonDemo {
+  enum Season { SPRING, SUMMER, FALL, WINTER }
+
+  public static void main(String[] args) {
+    Season[] seasons = Season.values();
+    for (Season s : seasons) {
+      System.out.println(s.ordinal() + ": " + s.name());
+    }
+  }
+}
+// Output: 0: SPRING  1: SUMMER  2: FALL  3: WINTER</pre>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q11</span>
+      <div>
+        <div class="q-topic">Coding: Stack and Queue methods</div>
+        <div class="q-text">Write a complete Java program that: (1) creates a Stack using ArrayDeque and pushes integers 1–5, then pops and prints each; (2) creates a Queue using LinkedList and enqueues "A", "B", "C", then dequeues and prints each.</div>
+      </div>
+    </div>
+    <textarea class="ans-field" placeholder="Write the full Java code..." style="min-height:140px"></textarea>
+    <button class="reveal-btn" onclick="reveal(this)">Show answer</button>
+    <div class="answer-box">
+      <pre>import java.util.*;
+
+public class StackQueueDemo {
+  public static void main(String[] args) {
+    // Stack (LIFO)
+    Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
+    for (int i = 1; i &lt;= 5; i++) stack.push(i);
+    while (!stack.isEmpty())
+      System.out.println(stack.pop()); // 5, 4, 3, 2, 1
+
+    // Queue (FIFO)
+    Queue&lt;String&gt; queue = new LinkedList&lt;&gt;();
+    queue.offer("A"); queue.offer("B"); queue.offer("C");
+    while (!queue.isEmpty())
+      System.out.println(queue.poll()); // A, B, C
+  }
+}</pre>
+    </div>
+  </div>
+
+  <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 2rem;">
+    <button class="check-all-btn" onclick="revealAll()">Reveal all answers</button>
+    <span style="font-size: 13px; color: #888;" id="done-msg"></span>
+  </div>
+</div>
+
+<script>
+function reveal(btn) {
+  const box = btn.nextElementSibling;
+  if (box.style.display === 'block') {
+    box.style.display = 'none'; btn.textContent = 'Show answer';
+  } else {
+    box.style.display = 'block'; btn.textContent = 'Hide answer';
+  }
+}
+function revealAll() {
+  document.querySelectorAll('.answer-box').forEach(b => b.style.display = 'block');
+  document.querySelectorAll('.reveal-btn').forEach(b => b.textContent = 'Hide answer');
+  document.getElementById('done-msg').textContent = 'All answers revealed.';
+}
+document.querySelectorAll('textarea.ans-field').forEach(ta => {
+  ta.addEventListener('input', updateProgress);
+});
+function updateProgress() {
+  const fields = document.querySelectorAll('textarea.ans-field');
+  const answered = Array.from(fields).filter(t => t.value.trim().length > 0).length;
+  const pct = Math.round((answered / fields.length) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = 'Question ' + answered + ' / ' + fields.length + ' answered';
+}
+</script>
+</body>
+</html>
